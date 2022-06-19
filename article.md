@@ -12,21 +12,24 @@ header-includes: |
     \pagestyle{fancy}
     \fancyhf{}
     \rhead{Dakar Institute of Technology}
-    \lhead{Patrick Nsukami}
+    \lhead{Mamadou Seybane KEBE}
     \rfoot{Page \thepage}
     \hypersetup{pdftex,
-            pdfauthor={Patrick Nsukami},
-            pdftitle={Introduction to Python programming},
-            pdfsubject={Introduction to Python programming},
-            pdfkeywords={Python, Programming},
+            pdfauthor={Mamadou Seybane KEBE},
+            pdftitle={Python : Generators and Iterators Protocol},
+            pdfsubject={Python : Generators and Iterators Protocol},
+            pdfkeywords={Python, Programming, Generator, Iterator},
             pdfproducer={Emacs, Pandoc, Latex, Markdown},
             pdfcreator={Emacs, Pandoc, Latex, Markdown}}
     
 ---
 
-# Foo:
+# Introduction
 
-foo bar baz
+Dans la vie des être humain les tâches répétitives sont exécutés quotidiennement. Dans l’informatique pour faciliter la vie, les applications développées dans ce sens implémentes beaucoup de tâches répétitives. Python qui est l’un des langages de programmation les plus populaire aujourd’hui implémente également ce principe de tâches réplétives appelé itération.\
+En programmation python ou tout autres langages de programmation boucler ou traverser une séquence est l’aspect le plus commun. Les boucle for et while dans python peuvent traiter presque toutes les tâches répétitives exécuter par les programmes. Itérer sur une séquence est tellement utilisé dans que python offre des capacités extras pour faciliter son utilisation et le rendre plus performant et efficient.\
+Certains de ces capacités pour traiter les séquences sont les itérateurs et les générateurs. Ce article va disséqué les itérateurs et générateurs.
+
 
 ```python
 # module foo.py
