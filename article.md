@@ -50,4 +50,4 @@ print(dir)
 ```
 On constate dans le resultat du code que la methode __iter__() est présent 
 
-![iter](/img/iter.png "Iter")
+![iter](img/iter.png "Iter")
