@@ -38,10 +38,10 @@ Pour être considéré comme itérable, l’objet doit implémenter les méthode
 Supposons que nous avons :
 
 
-```python
 
+<<engine='python', engine.path='python3'>>=
 Name = "Mamadou"
 
 print(type(Name))
 print(dir(Name))
-```
+@
