@@ -33,21 +33,24 @@ Certains de ces capacités pour traiter les séquences sont les itérateurs et l
 # Itérable et Itérateurs en Python
 
 Un itérateur est un objet qui contient un nombre comptable d’élément et il est utilisé pour itérer les objets comme les listes, les tuples, les strings, etc. les itérateurs sont implémentés comme classe et une variable locale pour itérer n’est pas requise. Ils utilisent la «lazy evaluation » où l’évaluation de l’expression sera maintenue et gardée en mémoire jusqu’à ce qu’il soit rappelé spécifiquement pour éviter l’évaluation répétitive.\
-Pour être considéré comme itérable, l’objet doit implémenter les méthodes __iter__() et __next__().\
+Pour être considéré comme itérable, l’objet doit implémenter les méthodes _ _iter_ _() et _ _next_ _().\
 \
 Supposons que nous avons :
 
 
 ```python
 
-Name = "Mamadou"
+Numbers = [1, 2, 3, 4, 5, 6, 7]
 
-print(type(Name))
-print(dir)
+print(dir(Numbers))
 ```
+Résultat :
 ```output
-['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isascii', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'removeprefix', 'removesuffix', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__length_hint__', '__lt__', '__ne__', '__new__', '__next__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__']
 ```
-On constate dans le resultat du code que la methode __iter__() est présent 
+On constate dans le resultat du code que la methode _ _iter_ _() est présent 
 
 ![iter](img/iter.png "Iter")
+
+Pour qu'une boucle fonctionne, elle appelle la méthode _ _iter_ _(), qui retourne un itérateur. La boucle utilise l'itérateur pour parcourir les éléments.
+Un itérateur est un objet avec un état. C’est-à-dire qu’il se souvient de son état pendant l’itération. L’itérateur sait également comment récupérer l’élément suivant. Ils utilisent la méthode _ _next_ _() pour récupérer l’élément suivant.  Cette méthode est obligatoire pour tout itérateur.
