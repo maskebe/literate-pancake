@@ -37,7 +37,7 @@ Pour être considéré comme itérable, l’objet doit implémenter les méthode
 \
 Supposons que nous avons :
 
-
+Code :
 ```python
 
 Numbers = [1, 2, 3, 4, 5, 6, 7]
@@ -53,4 +53,22 @@ On constate dans le resultat du code que la methode \__iter__() est présent
 ![iter](img/iter.png "Iter")
 
 Pour qu'une boucle fonctionne, elle appelle la méthode \__iter__(), qui retourne un itérateur. La boucle utilise l'itérateur pour parcourir les éléments.
-Un itérateur est un objet avec un état. C’est-à-dire qu’il se souvient de son état pendant l’itération. L’itérateur sait également comment récupérer l’élément suivant. Ils utilisent la méthode \__next__() pour récupérer l’élément suivant.  Cette méthode est obligatoire pour tout itérateur.
+
+Syntaxe :
+```output
+iter( object , sentinel )
+```
+La méthode iter() prend deux paramètres :
+- <span style="color:brown">Object</span> : un objet dont l’itérateur doit être créé par exemple les listes, tuples, sets, etc.
+- <span style="color:brown">Sentinel</span> : une valeur spéciale qui représente la fin de la séquence. Ce paramètre est optionnel.
+
+Un itérateur est un objet avec un état. C’est-à-dire qu’il se souvient de son état pendant l’itération. L’itérateur sait également comment récupérer l’élément suivant. Ils utilisent la méthode \__next__() pour récupérer l’élément suivant.  Cette méthode est obligatoire pour tout itérateur. La méthode garde une valeur à la foi.
+
+Syntaxe :
+```output
+next( iterator , default )
+```
+La méthode next() accepte deux paramètres :
+- <span style="color:brown">Iterator</span> : la méthode next() retourne la valeur suivante de l’itérateur.
+- <span style="color:brown">Default</span> : cette valeur est retournée si l’itérateur n’a plus de valeur à retourner. Ce paramètre est optionnel.
+
