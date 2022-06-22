@@ -58,9 +58,9 @@ Syntaxe :
 ```output
 iter( object , sentinel )
 ```
-La méthode iter() prend deux paramètres :
-- <span style="color:brown">Object</span> : un objet dont l’itérateur doit être créé par exemple les listes, tuples, sets, etc.
-- <span style="color:brown">Sentinel</span> : une valeur spéciale qui représente la fin de la séquence. Ce paramètre est optionnel.
+La méthode iter() prend deux paramètres :\
+- <span style="color:brown">Object</span> : un objet dont l’itérateur doit être créé par exemple les listes, tuples, sets, etc.\
+- <span style="color:brown">Sentinel</span> : une valeur spéciale qui représente la fin de la séquence. Ce paramètre est optionnel.\
 
 Un itérateur est un objet avec un état. C’est-à-dire qu’il se souvient de son état pendant l’itération. L’itérateur sait également comment récupérer l’élément suivant. Ils utilisent la méthode \__next__() pour récupérer l’élément suivant.  Cette méthode est obligatoire pour tout itérateur. La méthode garde une valeur à la foi.
 
@@ -68,7 +68,66 @@ Syntaxe :
 ```output
 next( iterator , default )
 ```
-La méthode next() accepte deux paramètres :
-- <span style="color:brown">Iterator</span> : la méthode next() retourne la valeur suivante de l’itérateur.
-- <span style="color:brown">Default</span> : cette valeur est retournée si l’itérateur n’a plus de valeur à retourner. Ce paramètre est optionnel.
+La méthode next() accepte deux paramètres :\
+- <span style="color:brown">Iterator</span> : la méthode next() retourne la valeur suivante de l’itérateur.\
+- <span style="color:brown">Default</span> : cette valeur est retournée si l’itérateur n’a plus de valeur à retourner. Ce paramètre est optionnel.\
 
+Nous allons faire un exemple avec une liste de différents types pour mieux comprendre :
+
+```python
+list = [ 77 , 1, 'DIT', 'Dakar', 'is fun' ] 
+```
+
+Nous allons parcourir cette liste avec le protocol d'itérateur qui comprend les deux méthodes iter() et next()
+
+Code :
+```python
+#get an iterator using iter()
+list_iter = iter(list)
+
+#print the iterator
+print(list_iter)
+
+#next for fetching the first element which is 77
+print(next(list_iter))
+
+#fetching the remaining elements
+print(next(list_iter))
+print(next(list_iter))
+print(next(list_iter))
+print(next(list_iter))
+```
+Résultat :
+```output 
+<list_iterator object at 0x0000011229AD3F70>
+77
+1
+DIT
+Dakar
+is fun
+
+[Done] exited with code=0 in 0.078 seconds
+```
+
+Comme vous pouvez le constater quand on imprime le résultat de l’itérateur list_iter, il affiche le type et l’adresse mémoire. Ensuite il affiche les éléments un à un. Qu’est-ce qui va se passer si on essaie d’afficher le prochain élément alors que la liste est déjà parcourue.
+
+Code :
+```python
+#trying to fetch next element after the last value is returned
+print(next(list_iter))
+```
+
+Résultat :
+```output
+Traceback (most recent call last):
+  File "c:\masterIA\python\final_exam\literate-pancake\output\tempCodeRunnerFile.py", line 20, in <module>
+    print(next(list_iter))
+StopIteration
+
+[Done] exited with code=1 in 0.082 seconds
+```
+
+Quand on essaie d’afficher la valeur suivante alors que l’itérateur n’en a plus on a une exception de type **Stopiteration** qui veut dire que la séquence a épuisé ses éléments.
+Il est important de souligner ici que les boucles for pour itérer, l'exception **Stopiteration** est gérer en interne et utiliser pour terminer la boucle sans erreur. Si nous utilisons un itérateur nous devons gérer nous même le cas des exception **Stopiteration**.
+
+Exemple d'itérateur :
