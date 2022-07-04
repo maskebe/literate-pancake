@@ -38,7 +38,7 @@ certaines de ces capacités pour traiter les séquences sont les itérateurs et 
 Un itérateur est un objet qui contient un nombre comptable d’élément et il est utilisé pour itérer les objets comme les listes, les tuples, les strings, etc. les itérateurs sont implémentés comme classe et une variable locale pour itérer n’est pas requise. Ils utilisent la «lazy evaluation » où l’évaluation de l’expression sera maintenue et gardée en mémoire jusqu’à ce qu’il soit rappelé spécifiquement pour éviter l’évaluation répétitive.
 Pour être considéré comme itérable, l’objet doit implémenter les méthodes \__iter__() et \__next__().
 \
-### <span style="color: #2155CD">\__iter()__</span> ### 
+<span style="color: #2155CD">\__iter()__</span>
 \
 \
 Supposons que nous avons :
@@ -68,7 +68,7 @@ La méthode iter() prend deux paramètres :
 - <span style="color:#06283D">Object</span> : un objet dont l’itérateur doit être créé par exemple les listes, tuples, sets, etc.
 - <span style="color:#06283D">Sentinel</span> : une valeur spéciale qui représente la fin de la séquence. Ce paramètre est optionnel.
 
-### <span style="color: #2155CD">\__next()__</span> ### 
+<span style="color: #2155CD">\__next()__</span>
 \
 \
 
@@ -430,7 +430,7 @@ Quand on appelle une fonction normale, l'exécution s'arrête dès que la comman
 ## <span style="color: #73A9AD">**Tableau comparatif**</span> ##
 \
 \
-|                                                                                                                                       **Générateur**                                                                                                                                      	|                                                                  **Fonction normale**                                                                 	|
+|     **Générateur**                                            	|  **Fonction normale**                                                                 	|
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:	|:-----------------------------------------------------------------------------------------------------------------------------------------------------:	|
 | Lorsque la fonction génératrice est appelée, elle regroupe toutes les valeurs de retour de yield dans un objet générateur et les renvoie. De plus, l'exécution du code ne démarre que lorsque l'objet est parcouru.                                                                        	| Il ne renvoie qu'une seule valeur lorsqu'il est appelé et l'exécution du code s'arrête dès qu'il atteint l'instruction de retour.                     	|
 | Lorsque la fonction génératrice est appelée, le premier yield est exécuté et la fonction s'arrête. Il renvoie ensuite l'objet générateur où la valeur est stockée. Lorsque l'appelant a accédé ou itéré sur cette valeur, l'instruction yield suivante est exécutée et le cycle se répète. 	| Lorsqu'une fonction normale est appelée, l'exécution commence et se termine dès qu'il atteint une instruction de retour. Il renvoie ensuite la valeur. 	|
