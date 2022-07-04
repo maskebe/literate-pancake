@@ -347,6 +347,87 @@ Il est important de noter s'il ne reste aucune valeur à retournée et qu'on inv
 
 ## performance des générateur ##
 
-## Générateur vs fonction normale##
+On va faire une comparaison de performance entre une fonction normale et une fonction génératrice.
 
-# Itérateur vs Générateur ##
+Dans cette illustration, il ya une liste de 10 nombres et 2 fonctions
+
+- une fonction data_list() qui selectionne aléatoirement un nombre n fois dans une liste.
+- une fonction génératrice data_generator() qui selectionne également un nombre n fois dans une liste.
+
+le code ci-dessous compare le temps d'exécution entre ces deux fonctions qui génère un million de nombres selectionnés aléatoirement :
+
+Code :
+
+```python
+import random
+import timeit
+from math import floor
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+def data_list(n):
+    result = []
+    for i in range(n):
+        result.append(random.choice(numbers))
+    return result
+
+def data_generator(n):
+    for i in range(n):
+        yield random.choice(numbers)
+
+t_list_start = timeit.default_timer()
+rand_list = data_list(1_000_000)
+t_list_end = timeit.default_timer()
+
+t_gen_start = timeit.default_timer()
+rand_gen = data_generator(1_000_000)
+t_gen_end = timeit.default_timer()
+
+t_gen = t_gen_end - t_gen_start
+t_list = t_list_end - t_list_start
+
+print(f"List creation took {t_list} Seconds")
+print(f"Generator creation took {t_gen} Seconds")
+
+print(f"The generator is {floor(t_list / t_gen)} times faster")
+```
+
+Résultat :
+```output
+[Running] python -u "c:\masterIA\python\final_exam\literate-pancake\output\article3.py"
+List creation took 0.4281648 Seconds
+Generator creation took 2.2000000000077513e-06 Seconds
+The generator is 194620 times faster
+
+[Done] exited with code=0 in 0.515 seconds
+```
+
+Nous puvons constater que la fonction génératrice est beaucoup plus rapide que la focntion normale. c'est dù au fait que la fonction data_list() stocke les tous les numéros en memoire alors que le générateur ne stocke rien d'où sa rapidité.
+
+## Générateur vs fonction normale ##
+Quand on appele une fonction normale, l'exécution s'arrête dès que la commande return est atteinte. Donc quand on appele une fonction normale il n'est pas possible d'interompre son exécution. Dans le cas de fonction génératrice dès que la commande return est atteinte, l'exécution est pausé et la valeur est retournée. Quand l'objet appelant le générateur fait une itération sur la valeur, la prochaine fois que la commande yield est exécutée et le cycle continu.
+
+Tableau comparatif :
+
+|                                                                                                                                       **Générateur**                                                                                                                                      	|                                                                  **Fonction normale**                                                                 	|
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:	|:-----------------------------------------------------------------------------------------------------------------------------------------------------:	|
+| Lorsque la fonction génératrice est appelé, elle regroupe toutes les valeurs de retour de yield dans un objet générateur et les renvoie. De plus, l'exécution du code ne démarre que lorsque l'objet est parcouru.                                                                        	| Il ne renvoie qu'une seule valeur lorsqu'il est appelé et l'exécution du code s'arrête dès qu'il atteint l'instruction de retour.                     	|
+| Lorsque la fonction génératrice est appelé, le premier yield est exécuté et la fonction s'arrête. Il renvoie ensuite l'objet générateur où la valeur est stockée. Lorsque l'appelant a accédé ou itéré sur cette valeur, l'instruction yield suivante est exécutée et le cycle se répète. 	| Lorsqu'une fonction normale est appelé, l'exécution commence et se termine dès qu'il atteint une instruction de retour. Il renvoie ensuite la valeur. 	|
+| Vous pouvez utiliser plusieurs instructions yield dans une fonction de générateur.                                                                                                                                                                                                        	| Une seule instruction return dans une fonction normale peut être utilisée.                                                                            	|
+| Il n'y a pas d'allocation de mémoire lorsque qu'on utilise le mot-clé yield.                                                                                                                                                                                                              	| Pour toutes les valeurs renvoyées, de la mémoire est allouée.                                                                                         	|
+| Extrêmement économe en mémoire, en particulier pour les grands ensembles de données.                                                                                                                                                                                                      	| Ne doit être utilisé qu'avec de petits ensembles de données.                                                                                          	|
+# Itérateur vs Générateur #
+
+Nous allons drésser un tableau comparatif entre les itérateurs et les générateurs :
+
+| Itérateur                                                                                                      	| Générateur                                                                                                                                      	|
+|----------------------------------------------------------------------------------------------------------------	|-------------------------------------------------------------------------------------------------------------------------------------------------	|
+| Les itérateurs sont des objets qui utilisent la méthode next() pour obtenir la valeur suivante de la séquence. 	| Un générateur est une fonction qui produit ou renvoie une séquence de valeurs à l'aide d'une instruction yield.                                 	|
+| Les classes sont utilisées pour implémenter les itérateurs.                                                    	| Les fonctions ou les compréhensions sont utilisées pour implémenter le générateur.                                                              	|
+| Chaque itérateur n'est pas forcément un générateur.                                                            	| Chaque générateur est forcément un itérateur.                                                                                                   	|
+| Implémentation complexe des protocoles itérateurs, c'est-à-dire l'utilisation de iter() et next().             	| Les générateurs en Python sont plus simples à coder et les codes sont plus compacts que l'itérateur personnalisé utilisant l'instruction yield. 	|
+| Les itérateurs en python sont moins efficaces en mémoire.                                                      	| Les générateurs en Python sont plus éfficaces dan l'utilisation de la mémoire.                                                                  	|
+| Aucune variable locale n'est utilisée dans les itérateurs.                                                     	| Toutes les variables locales sont stockées avant l'instruction yield.                                                                           	|
+| -                                                                                                              	| Un générateur peut avoir n'importe quel nombre d'instructions "yield".                                                                          	|
+
+# Conclusion #
